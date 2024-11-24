@@ -72,13 +72,23 @@ class PostAdmin(ModelAdmin):
 
 
 @admin.register(Comment)
-class CommentAdmin(MPTTModelAdmin):
-    list_display = ("author", "post", "content", "published_date", "status")
+class CommentAdmin(ModelAdmin):
+    compressed_fields = True
+
+    list_display = (
+        "author",
+        "post",
+        "parent",
+        "content",
+        "published_date",
+        "status",
+    )
     list_filter = ("status", "published_date", "post")
     search_fields = ("author__username", "content", "post__title")
     date_hierarchy = "published_date"
     ordering = ("-published_date",)
     raw_id_fields = ("post", "parent")  # Optimize ForeignKey field selection
+    autocomplet_field = ["post"]
 
     # Grouping fields using fieldsets
     fieldsets = (
@@ -95,6 +105,8 @@ class CommentAdmin(MPTTModelAdmin):
 
 @admin.register(Report)
 class ReportAdmin(ModelAdmin):
+    compressed_fields = True
+
     list_display = ("author", "post", "type", "published_date")
     list_filter = ("type", "published_date")
     search_fields = ("author__username", "post__title", "detail")
