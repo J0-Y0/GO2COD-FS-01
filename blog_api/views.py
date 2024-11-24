@@ -47,4 +47,4 @@ class CommentViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        return Comment.objects.all()
+        return Comment.objects.filter(parent=None)
