@@ -1,10 +1,11 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 from mptt.admin import MPTTModelAdmin
 from .models import Post, Comment, Report, Category
 
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(ModelAdmin):
     list_display = ("title", "author", "status", "published_date")
     list_filter = ("status", "author", "category", "published_date")
     search_fields = ("title", "content", "author__username")
@@ -62,7 +63,7 @@ class CommentAdmin(MPTTModelAdmin):
 
 
 @admin.register(Report)
-class ReportAdmin(admin.ModelAdmin):
+class ReportAdmin(ModelAdmin):
     list_display = ("author", "post", "type", "published_date")
     list_filter = ("type", "published_date")
     search_fields = ("author__username", "post__title", "detail")
@@ -90,6 +91,6 @@ class ReportAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ["name"]
+class CategoryAdmin(ModelAdmin):
+    list_display = ["name", "last_updated"]
     search_fields = ["name"]
