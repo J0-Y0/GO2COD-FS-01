@@ -3,9 +3,29 @@ from unfold.admin import ModelAdmin
 from mptt.admin import MPTTModelAdmin
 from .models import Post, Comment, Report, Category
 
+from taggit.models import Tag
+
+from taggit.admin import TagAdmin as DefaultTagAdmin
+
 
 @admin.register(Post)
 class PostAdmin(ModelAdmin):
+    # compressed_fields = True
+    # Display submit button in filters
+    list_filter_submit = True
+
+    # Display changelist in fullwidth
+    list_fullwidth = True
+
+    # Set to False, to enable filter as "sidebar"
+    list_filter_sheet = True
+
+    # Position horizontal scrollbar in changelist at the top
+    list_horizontal_scrollbar_top = False
+
+    # Dsable select all action in changelist
+    list_disable_select_all = False
+
     list_display = ("title", "author", "status", "published_date")
     list_filter = ("status", "author", "category", "published_date")
     search_fields = ("title", "content", "author__username")
@@ -22,18 +42,29 @@ class PostAdmin(ModelAdmin):
     fieldsets = (
         (
             "Basic Information",
-            {"fields": ("title", "slug", "image", "category", "excerpt", "content")},
+            {
+                # "classes": ["tab"],
+                "fields": (
+                    "title",
+                    ("slug", "image"),
+                    "category",
+                    "excerpt",
+                    "content",
+                ),
+            },
         ),
         (
             "Status & Author",
             {
+                # "classes": ["tab"],
                 "fields": ("status", "author", "published_date"),
-                "classes": ("collapse",),  # Makes the section collapsible
+                # "classes": ("collapse",),  # Makes the section collapsible
             },
         ),
         (
             "User Interaction",
             {
+                # "classes": ["tab"],
                 "fields": ("favorite", "liked", "disliked", "tags"),
             },
         ),
@@ -94,3 +125,11 @@ class ReportAdmin(ModelAdmin):
 class CategoryAdmin(ModelAdmin):
     list_display = ["name", "last_updated"]
     search_fields = ["name"]
+
+
+admin.site.unregister(Tag)
+
+
+@admin.register(Tag)
+class tagAdmin(ModelAdmin):
+    list_display = ["name"]
