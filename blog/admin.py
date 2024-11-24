@@ -79,13 +79,13 @@ class ReportAdmin(admin.ModelAdmin):
             "Report Details",
             {"fields": ("author", "post", "type", "otherDescription", "detail")},
         ),
-        (
-            "Date",
-            {
-                "fields": ("published_date",),
-                "classes": ("collapse",),  # Makes the section collapsible
-            },
-        ),
+        # (
+        #     "Date",
+        #     {
+        #         "fields": ("published_date",),
+        #         "classes": ("collapse",),  # Makes the section collapsible
+        #     },
+        # ),
     )
 
 
