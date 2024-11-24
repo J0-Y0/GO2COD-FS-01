@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     "blog",
     "taggit",
     "mptt",
+    "rest_framework",
+    "rest_framework_nested",
 ]
 
 MIDDLEWARE = [

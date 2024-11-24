@@ -81,9 +81,8 @@ class CommentAdmin(ModelAdmin):
         "parent",
         "content",
         "published_date",
-        "status",
     )
-    list_filter = ("status", "published_date", "post")
+    list_filter = ("published_date", "post")
     search_fields = ("author__username", "content", "post__title")
     date_hierarchy = "published_date"
     ordering = ("-published_date",)

@@ -9,6 +9,8 @@ django-taggit = "*"
 django-mptt = "*"
 pillow = "*"
 django-unfold = "*"
+djangorestframework = "*"
+drf-nested-routers = "*"
 
 [dev-packages]
 
