@@ -10,7 +10,7 @@ from taggit.admin import TagAdmin as DefaultTagAdmin
 
 @admin.register(Post)
 class PostAdmin(ModelAdmin):
-    # compressed_fields = True
+    compressed_fields = True
     # Display submit button in filters
     list_filter_submit = True
 
@@ -43,7 +43,7 @@ class PostAdmin(ModelAdmin):
         (
             "Basic Information",
             {
-                # "classes": ["tab"],
+                "classes": ["tab"],
                 "fields": (
                     "title",
                     ("slug", "image"),
@@ -56,7 +56,7 @@ class PostAdmin(ModelAdmin):
         (
             "Status & Author",
             {
-                # "classes": ["tab"],
+                "classes": ["tab"],
                 "fields": ("status", "author", "published_date"),
                 # "classes": ("collapse",),  # Makes the section collapsible
             },
@@ -64,7 +64,7 @@ class PostAdmin(ModelAdmin):
         (
             "User Interaction",
             {
-                # "classes": ["tab"],
+                "classes": ["tab"],
                 "fields": ("favorite", "liked", "disliked", "tags"),
             },
         ),
