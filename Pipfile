@@ -11,6 +11,7 @@ pillow = "*"
 django-unfold = "*"
 djangorestframework = "*"
 drf-nested-routers = "*"
+drf-spectacular = "*"
 
 [dev-packages]
 
