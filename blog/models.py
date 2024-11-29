@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils import timezone, text
 from django.utils.timesince import timesince
 from mptt.models import MPTTModel, TreeForeignKey
@@ -46,19 +46,21 @@ class Post(models.Model):
     content = models.TextField()
     published_date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="blog_posts"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="blog_posts"
     )
     status = models.CharField(max_length=15, choices=options, default="draft")
 
     favorite = models.ManyToManyField(
-        User,
+        settings.AUTH_USER_MODEL,
         default=None,
         blank=True,
         related_name="favorite",
     )
-    liked = models.ManyToManyField(User, default=None, blank=True, related_name="liked")
+    liked = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, default=None, blank=True, related_name="liked"
+    )
     disliked = models.ManyToManyField(
-        User, default=None, blank=True, related_name="disliked"
+        settings.AUTH_USER_MODEL, default=None, blank=True, related_name="disliked"
     )
     tags = TaggableManager()
     objects = models.Manager()
@@ -92,11 +94,13 @@ class Comment(MPTTModel):
     parent = TreeForeignKey(
         "self", on_delete=models.CASCADE, null=True, blank=True, related_name="children"
     )
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="comments"
+    )
     content = models.TextField()
     published_date = models.DateTimeField(auto_now_add=True)
     liked = models.ManyToManyField(
-        User, default=None, blank=True, related_name="liked_comment"
+        settings.AUTH_USER_MODEL, default=None, blank=True, related_name="liked_comment"
     )
 
     def time_difference(self):
@@ -121,7 +125,9 @@ class Report(models.Model):
         ("other", "other"),
     )
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="post")
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reports")
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="reports"
+    )
     type = models.CharField(
         max_length=50, choices=report_types, verbose_name="Report type"
     )

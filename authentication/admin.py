@@ -14,16 +14,20 @@ class UserAdmin(BaseAdmin, ModelAdmin):
     change_password_form = AdminPasswordChangeForm
 
     add_fieldsets = [
-        ("Personal info", {"fields": ["first_name", "last_name", "email"]}),
-        ("Authentication", {"fields": ["password1", "password2"]}),
+        (
+            "Personal info",
+            {"classes": ["tab"], "fields": ["first_name", "last_name", "email"]},
+        ),
+        ("Authentication", {"classes": ["tab"], "fields": ["password1", "password2"]}),
         (
             "User type",
             {
+                "classes": ["tab"],
                 "fields": [
                     "is_active",
                     "is_staff",
                     "is_superuser",
-                ]
+                ],
             },
         ),
         # ("Permissions", {"fields": ["groups", "user_permissions"]}),

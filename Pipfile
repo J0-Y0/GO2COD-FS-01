@@ -13,6 +13,8 @@ djangorestframework = "*"
 drf-nested-routers = "*"
 drf-spectacular = "*"
 django-cors-headers = "*"
+djangorestframework-simplejwt = "*"
+djoser = "*"
 
 [dev-packages]
 
