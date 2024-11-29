@@ -12,6 +12,7 @@ django-unfold = "*"
 djangorestframework = "*"
 drf-nested-routers = "*"
 drf-spectacular = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
