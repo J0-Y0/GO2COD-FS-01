@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>janPost Quick Links</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f2937;
+            color: #f9fafb;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 20px;
+            font-size: 2rem;
+        }
+
+        h4 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .card {
+            background: #374151;
+            color: #f9fafb;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.05);
+            width: 250px;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            min-height: 20vh;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.5), -5px -5px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+
+        .card a {
+            display: inline-block;
+            text-decoration: none;
+            color: #38bdf8;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: color 0.2s;
+        }
+
+        .card a:hover {
+            color: #0ea5e9;
+        }  footer {
+            background-color: #111827;
+            color: #9ca3af;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        footer{
+            position: absolute;
+            width: 100%;
+            overflow: hidden;
+            bottom :0;
+        }
+        footer a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+            
+        }
+
+        footer a:hover {
+            color: #0ea5e9;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <h3>Welcome
+    </h3>
+    <h4>ጃንpost quick link
+        <div class="container">
+
+            <div class="card">
+                <h4>Backend Administration</h4>
+                <p>Manage all the data models</p>
+                <a target="_blank" href="/admin/">Login as Admin</a>
+            </div>
+            <div class="card">
+                <h4>API Documentation | Redoc</h4>
+                <p>Redoc API documentation</p>
+                <a target="_blank" href="http://127.0.0.1:8000/api/schema/redoc/">Read Doc</>
+            </div>
+            <div class="card">
+                <h4>API Documentation | Swagger-UI</h4>
+                <p>Swagger-UI API documentation</p>
+                <a target="_blank" href="http://127.0.0.1:8000/api/schema/swagger-ui/">Read Doc</>
+            </div>
+            <div class="card">
+                <h4>Download API Schema</h4>
+                <p>Download API schema file</p>
+                <a target="_blank" href="http://127.0.0.1:8000/api/schema/">Download Doc</>
+            </div>
+
+        </div>
+
+    <footer>
+        &copy; 2024 <a href="https://github.com/J0-Y0" target="_blank">Yosef Emyayu</a>. All rights reserved.
+    </footer>
+</body>
+
+</html>
