@@ -9,8 +9,12 @@ django-taggit = "*"
 django-mptt = "*"
 pillow = "*"
 django-unfold = "*"
+djangorestframework = "*"
+drf-nested-routers = "*"
+drf-spectacular = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "*"

@@ -73,7 +73,7 @@ class PostAdmin(ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(ModelAdmin):
-    compressed_fields = True
+    # compressed_fields = True
 
     list_display = (
         "author",
@@ -81,9 +81,8 @@ class CommentAdmin(ModelAdmin):
         "parent",
         "content",
         "published_date",
-        "status",
     )
-    list_filter = ("status", "published_date", "post")
+    list_filter = ("published_date", "post")
     search_fields = ("author__username", "content", "post__title")
     date_hierarchy = "published_date"
     ordering = ("-published_date",)
@@ -92,14 +91,17 @@ class CommentAdmin(ModelAdmin):
 
     # Grouping fields using fieldsets
     fieldsets = (
-        ("Comment Details", {"fields": ("author", "post", "content", "parent")}),
         (
-            "Status & Interaction",
-            {
-                "fields": ("status", "liked"),
-                "classes": ("collapse",),  # Makes the section collapsible
-            },
+            "Comment Details",
+            {"fields": (("post", "parent"), "content", "author", "liked")},
         ),
+        # (
+        #     "Status & Interaction",
+        #     {
+        #         "fields": ("liked"),
+        #         "classes": ("collapse",),  # Makes the section collapsible
+        #     },
+        # ),
     )
 
 

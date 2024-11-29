@@ -99,8 +99,6 @@ class Comment(MPTTModel):
         User, default=None, blank=True, related_name="liked_comment"
     )
 
-    status = models.BooleanField(default=True)
-
     def time_difference(self):
         now = timezone.now()
         # time_diff = now - self.created_at
