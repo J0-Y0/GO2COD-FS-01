@@ -11,7 +11,7 @@ import random
 # model field utility methods
 # post based image directory
 def postImageDirectory(instance, filename):
-    return "posts/{0}/{1}".format(instance.id, filename)
+    return ".images/posts/{0}/{1}".format(instance.id, filename)
 
 
 # a random character to maintain slug uniqueness, append after title
@@ -36,7 +36,7 @@ class Post(models.Model):
 
     options = (("draft", "Draft"), ("published", "Published"))
 
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=500)
     slug = models.SlugField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to=postImageDirectory, default="posts/default.jpg")
     category = models.ForeignKey(

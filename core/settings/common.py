@@ -8,18 +8,6 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-$@+)!ez+qhi39#^z1-l-8g06ct&noz$go16ekr@(#+h+8&3%(="
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -73,17 +61,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "core.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
@@ -172,7 +149,7 @@ UNFOLD = {
             {
                 "title": _("Content Management"),
                 "separator": True,
-                "collapsible": True,
+                "collapsible": False,
                 "items": [
                     {
                         "title": _("Posts"),
@@ -206,12 +183,17 @@ UNFOLD = {
             {
                 "title": _("User Management"),
                 "separator": True,
-                "collapsible": True,
+                "collapsible": False,
                 "items": [
                     {
                         "title": _("Users"),
                         "icon": "people",
                         "link": reverse_lazy("admin:authentication_user_changelist"),
+                    },
+                    {
+                        "title": _("User Groupe"),
+                        "icon": "partner_exchange",
+                        "link": reverse_lazy("admin:auth_group_changelist"),
                     },
                 ],
             },
@@ -231,28 +213,23 @@ REST_FRAMEWORK = {
 }
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-]
-
 DJOSER = {
     "SERIALIZERS": {
         "user_create": "authentication.serializers.UserCreateSerializer",
         "current_user": "authentication.serializers.UserSerializer",
     }
 }
-SIMPLE_JWT = {
-    "AUTH_HEADER_TYPES": ("JWT",),
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=5),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=6),
-}
+
 AUTH_USER_MODEL = "authentication.User"
 
-
-# SPECTACULAR_SETTINGS = {
-#     'TITLE': 'Your Project API',
-#     'DESCRIPTION': 'Your project description',
-#     'VERSION': '1.0.0',
-#     'SERVE_INCLUDE_SCHEMA': False,
-#     # OTHER SETTINGS
-# }
+SPECTACULAR_SETTINGS = {
+    "TITLE": "JanPost API",
+    "DESCRIPTION": "All the API endpoints for JanPost",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SCHEMA_PATH_PREFIX": r"/api/v[0-9]",
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SORT_OPERATIONS": True,
+    "POSTPROCESSING_HOOKS": ["janpost.api_hooks.custom_postprocess"],
+}
