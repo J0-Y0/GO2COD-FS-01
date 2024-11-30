@@ -127,5 +127,5 @@ I  welcome contributions to improve this project! 🎉
 ---
 
 
-This project is open-source and available under the [MIT License](license).
+This project is open-source and available under the [MIT License](LICENSE).
 
