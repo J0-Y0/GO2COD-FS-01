@@ -13,6 +13,7 @@ class PostAdmin(ModelAdmin):
     compressed_fields = True
     # Display submit button in filters
     list_filter_submit = True
+    list_per_page = 10
 
     # Display changelist in fullwidth
     list_fullwidth = True
