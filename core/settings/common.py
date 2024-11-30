@@ -104,8 +104,8 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 UNFOLD = {
-    "SITE_TITLE": "My Custom Admin Panel",  # Title suffix
-    "SITE_HEADER": "JO Blog Admin",  # Sidebar header
+    "SITE_TITLE": "ጃንpost Admin Panel",  # Title suffix
+    "SITE_HEADER": "JOጃንpost Blog Admin",  # Sidebar header
     "SITE_URL": "",  # Redirect URL for the site header
     "SITE_SYMBOL": "speed",  # Symbol from the icon set
     "SITE_FAVICONS": [
