@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
+from rest_framework.decorators import action
 
 from .serializers import PostSerializer, CommentSerializer
 
@@ -33,11 +34,14 @@ class PostViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly, PostAuthorPermission]
 
     def get_queryset(self):
+        status = self.request.query_params.get("status")
+        if status == "all":
+            return Post.objects.filter(author=self.request.user)
         return Post.newManager.all()
 
-    def get_object(self, queryset=None, **kwargs):
-        slug = self.kwargs.get("pk")
-        instance = get_object_or_404(Post, slug=slug)
+    def get_object(self):
+        # Retrieve a specific post by slug for general access
+        instance = get_object_or_404(Post, slug=self.kwargs.get("pk"))
         self.check_object_permissions(self.request, instance)
         return instance
 

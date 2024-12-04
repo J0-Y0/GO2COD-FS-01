@@ -1,4 +1,7 @@
+import os
 from .common import *
+
+from dotenv import load_dotenv
 
 DEBUG = True
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
@@ -7,8 +10,12 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 SECRET_KEY = "django-insecure-$@+)!ez+qhi39#^z1-l-8g06ct&noz$go16ekr@(#+h+8&3%(="
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("TEST_DBNAME"),  # Replace with your database name
+        "USER": os.getenv("TEST_DBUSER"),  # Replace with your database user
+        "PASSWORD": os.getenv("TEST_DBPASSWORD"),  # Replace with your database password
+        "HOST": os.getenv("TEST_DBHOST"),  # Replace with your database host
+        "PORT": os.getenv("TEST_DB_PORT"),  # Optional: Specify the port
     }
 }
 CORS_ALLOWED_ORIGINS = [
