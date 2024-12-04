@@ -38,7 +38,9 @@ class Post(models.Model):
 
     title = models.CharField(max_length=500)
     slug = models.SlugField(max_length=255, blank=True, null=True)
-    image = models.ImageField(upload_to=postImageDirectory, default="posts/default.jpg")
+    image = models.ImageField(
+        upload_to=postImageDirectory, default=".images./posts/default.jpg"
+    )
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, default=1, null=True
     )
