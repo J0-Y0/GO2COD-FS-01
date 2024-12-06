@@ -35,9 +35,17 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         status = self.request.query_params.get("status")
+        saved = self.request.query_params.get("saved")
+
         user = self.request.user
-        if user.is_authenticated and status == "all":
-            return Post.objects.filter(author=user)
+        if user.is_authenticated and status:
+            if status == "all":
+                return Post.objects.filter(author=user)
+            else:
+                return Post.objects.filter(author=user, status=status)
+
+        if user.is_authenticated and saved:
+            return Post.newManager.filter(favorite=user)
         return Post.newManager.all()
 
     def get_object(self):
