@@ -3,6 +3,12 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
+
+import os
+
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -214,10 +220,24 @@ REST_FRAMEWORK = {
 
 
 DJOSER = {
-    "SERIALIZERS": {
-        "user_create": "authentication.serializers.UserCreateSerializer",
-        "current_user": "authentication.serializers.UserSerializer",
-    }
+    "LOGIN_FIELD": "email",
+    "PASSWORD_RESET_CONFIRM_RETYPE": False,
+    "PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND": True,  # tell the frontend email not found if it does not exist
+    "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,  # send email when password changed
+    "SEND_ACTIVATION_EMAIL": True,  # send activation link to the user ,initially account is inactive
+    "ACTIVATION_URL": os.getenv("FRONTEND_ADDRESS") + "/account/activate/{uid}/{token}",
+    # "SERIALIZERS": {
+    #     "user_create": "authentication.serializers.UserCreateSerializer",
+    #     "current_user": "authentication.serializers.UserSerializer",
+    # }
+    "SEND_ACTIVATION_EMAIL": True,
+    "EMAIL": {
+        "activation": "authentication.email.ActivationEmail",
+        "confirmation": "authentication.email.ConfirmationEmail",
+        "password_reset": "authentication.email.PasswordResetEmail",
+        "password_changed_confirmation": "authentication.email.PasswordChangedConfirmationEmail",
+        "username_reset": "authentication.email.UsernameResetEmail",
+    },
 }
 
 AUTH_USER_MODEL = "authentication.User"

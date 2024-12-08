@@ -41,3 +41,10 @@ SPECTACULAR_SETTINGS = {
         "email": "yosef.emyayu1@gmail.com",
     },
 }
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "localhost"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = ""  # os.getenv("jo_dev_mail")
+EMAIL_HOST_PASSWORD = ""  # os.getenv("jo_dev_token")
