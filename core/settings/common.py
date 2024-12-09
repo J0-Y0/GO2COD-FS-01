@@ -226,6 +226,7 @@ DJOSER = {
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,  # send email when password changed
     "SEND_ACTIVATION_EMAIL": True,  # send activation link to the user ,initially account is inactive
     "ACTIVATION_URL": os.getenv("FRONTEND_ADDRESS") + "/account/activate/{uid}/{token}",
+    "TOKEN_OBTAIN_SERIALIZER": "authentication.serializers.MyTokenObtainPairSerializer",
     # "SERIALIZERS": {
     #     "user_create": "authentication.serializers.UserCreateSerializer",
     #     "current_user": "authentication.serializers.UserSerializer",
