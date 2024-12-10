@@ -11,12 +11,25 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+
+        fields = [
+            "id",
+            "first_name",
+            "last_name",
+        ]
+
+
 # class CommentSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = Comment
 #         fields = "__all__"
 class CommentSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
+    author = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = Comment
