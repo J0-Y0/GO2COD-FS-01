@@ -124,7 +124,6 @@ UNFOLD = {
     ],
     "SHOW_HISTORY": True,  # Show "History" button
     "SHOW_VIEW_ON_SITE": True,  # Show "View on site" button
-    "THEME": "dark",  # Force dark theme
     "COLORS": {
         "font": {
             "subtle-light": "107 114 128",
@@ -253,3 +252,10 @@ SPECTACULAR_SETTINGS = {
     "SORT_OPERATIONS": True,
     "POSTPROCESSING_HOOKS": ["janpost.api_hooks.custom_postprocess"],
 }
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv("jo_dev_mail")
+EMAIL_HOST_PASSWORD = os.getenv("jo_dev_token")
+EMAIL_USE_TLS = True
+TAGGIT_CASE_INSENSITIVE = True
