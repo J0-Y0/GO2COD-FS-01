@@ -223,6 +223,8 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_RETYPE": False,
     "PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND": True,  # tell the frontend email not found if it does not exist
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,  # send email when password changed
+    "PASSWORD_RESET_CONFIRM_URL": os.getenv("FRONTEND_ADDRESS")
+    + "/account/password_reset/confirm/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": True,  # send activation link to the user ,initially account is inactive
     "ACTIVATION_URL": os.getenv("FRONTEND_ADDRESS") + "/account/activate/{uid}/{token}",
     # "SERIALIZERS": {
