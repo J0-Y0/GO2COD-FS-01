@@ -43,7 +43,7 @@ JanPost is a blogging platform designed to foster sharing insights on educationa
   - Email-based account activation and password reset using SMTP.  
 
 ### **Frontend**  
-- **React + TypeScript**: The frontend is currently under development. You can follow the progress here:  
+- **React + TypeScript**: 
   👉 [JanPost Frontend Repository](https://github.com/J0-Y0/GO2COD-FS-01-Frontend)
 
 ---
